@@ -4,7 +4,7 @@ import PyPDF2
 from tabulate import tabulate
 
 def main(args):
-    if args.range is not None and args.range[0] < 0 or args.range[0] >= args.range[1]:
+    if args.range is not None and (args.range[0] < 0 or args.range[0] >= args.range[1]):
         parser.error("Invalid range.")
     fileTable = []
     totalPages = 0
@@ -14,7 +14,7 @@ def main(args):
         if not fileName.endswith('.pdf'):
             continue
         pdfFileCounter += 1
-        if pdfFileCounter > args.range[1]:
+        if args.range is not None and pdfFileCounter > args.range[1]:
             break
         if canAdd or pdfFileCounter >= args.range[0] and pdfFileCounter <= args.range[1]:
             # Reconstructing the full file path.
