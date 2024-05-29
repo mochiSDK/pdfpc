@@ -43,8 +43,8 @@ def count_pages(filePath):
     :return: The amount of pages
     """
     file = open(filePath, 'rb')
-    reader = PyPDF2.PdfFileReader(file)
-    return reader.numPages
+    reader = PyPDF2.PdfReader(file)
+    return len(reader.pages)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(prog='pdfpc',
